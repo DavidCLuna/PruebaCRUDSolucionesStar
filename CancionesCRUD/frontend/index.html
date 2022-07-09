@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/style.css" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+    <title>Cantantes</title>
+</head>
+
+<body>
+
+    <div class="container-fluid p-5">
+        <div class="title-wrapper pt-30">
+            <div class="row mb-3">
+                <div class="col-md-12 p-3">
+                    <div class="text-center">
+                        <h3 class="fw-bold">Registro Cantantes</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <form class="form-group" method="POST" id="form_agregar">
+            <div>
+                <div class="row">
+                    <div class="col-4 mb-3">
+                        <input type="text" name="nombre_natural" id="nombre_natural" class="form-control" placeholder="Nombre Natural" required="true">
+                    </div>
+                    <div class="col-4 mb-3">
+                        <input type="text" name="nombre_artistico" id="nombre_artistico" class="form-control" placeholder="Nombre Artístico" required>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <input type="text" name="genero_musical" id="genero_musical" class="form-control" placeholder="Genero Musical" required>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <input type="number" name="edad" id="edad" class="form-control" placeholder="Edad" required>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <input type="text" name="pais_nacimiento" id="pais_nacimiento" class="form-control" placeholder="País Nacimiento" required>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <button type="submit" class="btn btn-primary text-light w-100 fw-bold" id="btn_agregar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM12 8v8m-4-4h8" /></svg>
+                                Agregar
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="tables-wraper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mt-5">
+                        <div class=" p-3">
+                            <table class="table table-striped table-bordered text-center" id="table-results" style="width:100%">
+                                <thead class="">
+                                    <th>
+                                        <h6>#</h6>
+                                    </th>
+                                    <th>
+                                        <h6>Nombre Natural</h6>
+                                    </th>
+                                    <th>
+                                        <h6>Nombre Artístico</h6>
+                                    </th>
+                                    <th>
+                                        <h6>Genero Musical</h6>
+                                    </th>
+                                    <th>
+                                        <h6>Edad</h6>
+                                    </th>
+                                    <th>
+                                        <h6>País Nacimiento</h6>
+                                    </th>
+                                    <th>Funciones</th>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar start -->
+    <div class="warning-modal">
+        <div class="modal fade" id="ModalUpdate" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content card-style">
+                    <div class="modal-header p-3">
+                        <h6 class="fw-bold">
+                            Editar Cantante
+                        </h6>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form method="post" id="form_update">
+                            <div class="content">
+
+                                <div class="row pt-2">
+                                    <input type="hidden" name="id_update" id="id_update">
+                                    <div class="form-group col-4 mb-3 ">
+                                        <label for="nombre_natural">Nombre Natural</label>
+                                        <input type="text" name="nombre_natural" id="nombre_natural_update" class="form-control" placeholder="Nombre Natural" required="true">
+                                    </div>
+                                    <div class="form-group col-4 mb-3">
+                                        <label for="nombre_natural">Nombre Artístico</label>
+                                        <input type="text" name="nombre_artistico" id="nombre_artistico_update" class="form-control" placeholder="Nombre Artístico" required>
+                                    </div>
+                                    <div class="form-group col-4 mb-3">
+                                        <label for="nombre_natural">Género Musical</label>
+                                        <input type="text" name="genero_musical" id="genero_musical_update" class="form-control" placeholder="Genero Musical" required>
+                                    </div>
+                                    <div class="form-group col-4 mb-3">
+                                        <label for="nombre_natural">Edad</label>
+                                        <input type="number" name="edad" id="edad_update" class="form-control" placeholder="Edad" required>
+                                    </div>
+                                    <div class="form-group col-4 mb-3">
+                                        <label for="nombre_natural">País de Nacimiento</label>
+                                        <input type="text" name="pais_nacimiento" id="pais_nacimiento_update" class="form-control" placeholder="País Nacimiento" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="action d-flex flex-wrap justify-content-start mt-2">
+                                <button class="btn btn-primary w-100 btn-hover m-1 text-light" type="submit" id="btn_update">
+                                Guardar Cambios
+                            </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ModalFour End -->
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script src="./assets/index.js"></script>
+
+</body>
+
+</html>
